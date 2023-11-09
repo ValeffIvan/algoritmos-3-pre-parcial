@@ -6,6 +6,7 @@ import BaseLayout from './Layouts/BaseLayout.jsx';
 
 import Users from "./Pages/Users.jsx";
 import CreateUser from './Pages/CreateUser.jsx';
+import GetUsers from "./Pages/GetUsers.jsx";
 
 const App = () => {
 
@@ -15,12 +16,12 @@ const App = () => {
 
 
   useEffect(() => {
-    if(localStorage.getItem('jwt')){
+    //if(localStorage.getItem('jwt')){
       setvAilableRoutes(
         [
           {
             path:'/users',
-            element: <BaseLayout children={<Users />}/>
+            element: <BaseLayout children={<GetUsers />}/>
           },
           {
             path:'/createUser',
@@ -28,7 +29,7 @@ const App = () => {
           }
         ]
       );
-    }
+    //}
     
   }, [isLoged]);
 

@@ -1,4 +1,4 @@
-const backendurl = "http://localhost:8000/api/";
+const backendurl = "http://localhost:5033/api/";
 
 export default backendurl;
 
@@ -75,11 +75,28 @@ export async function PATCH(url, request){
     .catch((err) => err);
 }
 
+export async function PUT(url, request){
+
+    return await fetch(backendurl + url, {
+        method:'PUT',
+        mode:'cors',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || '',
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(request)
+    })
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => err);
+}
+
+
 export async function DELETE(url, request){
 
     let uri = "";
     if(request){
-        uri = '?' + new URLSearchParams(request).toString();
+        uri = '/' + request;
     }
 
     return await fetch(backendurl + url + uri, {
